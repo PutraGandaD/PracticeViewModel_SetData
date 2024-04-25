@@ -9,7 +9,7 @@ import com.google.android.material.card.MaterialCardView
 import com.putragandad.practiceviewmodel.R
 import com.putragandad.practiceviewmodel.models.Item
 
-class ItemListAdapter(private val dataSet: ArrayList<Item>, private val onClickListener: OnClickListener): RecyclerView.Adapter<ItemListAdapter.ViewHolder>() {
+class ItemListAdapter(private val dataSet: ArrayList<Item>, private val onItemClickListener: CardOnClickListener): RecyclerView.Adapter<ItemListAdapter.ViewHolder>() {
    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
        val cardTitle = view.findViewById<TextView>(R.id.tv_list_card_title)
        val cardDescription = view.findViewById<TextView>(R.id.tv_list_card_desc)
@@ -32,12 +32,12 @@ class ItemListAdapter(private val dataSet: ArrayList<Item>, private val onClickL
 
         val itemCard = holder.itemView.findViewById<MaterialCardView>(R.id.card_list)
         itemCard.setOnClickListener {
-            onClickListener.onItemClicked(data)
+            onItemClickListener.onItemClicked(data)
         }
 
     }
 }
 
-interface OnClickListener {
+interface CardOnClickListener {
     fun onItemClicked(item: Item)
 }
