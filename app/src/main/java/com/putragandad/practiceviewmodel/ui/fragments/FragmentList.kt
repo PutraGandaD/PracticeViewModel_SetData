@@ -13,18 +13,23 @@ import androidx.recyclerview.widget.RecyclerView
 import com.putragandad.practiceviewmodel.R
 import com.putragandad.practiceviewmodel.adapters.CardOnClickListener
 import com.putragandad.practiceviewmodel.adapters.ItemListAdapter
+import com.putragandad.practiceviewmodel.databinding.FragmentDetailBinding
+import com.putragandad.practiceviewmodel.databinding.FragmentListBinding
 import com.putragandad.practiceviewmodel.models.Item
 import com.putragandad.practiceviewmodel.ui.SharedViewModel
 
 class FragmentList : Fragment(), CardOnClickListener {
     private lateinit var sharedViewModel: SharedViewModel
+    private var _binding : FragmentListBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        _binding = FragmentListBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list, container, false)
+        return binding.root
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +49,10 @@ class FragmentList : Fragment(), CardOnClickListener {
             recyclerView.adapter = rvAdapter
             recyclerView.layoutManager = LinearLayoutManager(requireContext())
         })
+
+        binding.fabAddNotes.setOnClickListener {
+            findNavController().navigate(R.id.action_fragmentList_to_fragmentAddNote)
+        }
     }
 
     override fun onItemClicked(item: Item) {

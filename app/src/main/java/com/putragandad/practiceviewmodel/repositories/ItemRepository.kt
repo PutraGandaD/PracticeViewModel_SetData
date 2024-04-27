@@ -1,10 +1,8 @@
 package com.putragandad.practiceviewmodel.repositories
 
-import com.putragandad.practiceviewmodel.utils.Constant
 import com.putragandad.practiceviewmodel.models.Item
+import com.putragandad.practiceviewmodel.utils.Constant
 
-object ItemRepository {
-    fun getItemData() : ArrayList<Item> {
-        return Constant.itemConstantData()
-    }
+interface ItemRepository {
+
 }
