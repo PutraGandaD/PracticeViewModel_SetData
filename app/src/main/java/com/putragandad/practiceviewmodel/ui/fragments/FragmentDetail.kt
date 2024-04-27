@@ -1,17 +1,12 @@
-package com.putragandad.practiceviewmodel.fragments
+package com.putragandad.practiceviewmodel.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import android.widget.Toast
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import com.putragandad.practiceviewmodel.R
 import com.putragandad.practiceviewmodel.databinding.FragmentDetailBinding
-import com.putragandad.practiceviewmodel.viewmodels.SharedViewModel
+import com.putragandad.practiceviewmodel.ui.SharedViewModel
 
 class FragmentDetail : Fragment() {
 
@@ -30,15 +25,6 @@ class FragmentDetail : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // get viewmodels instance
-        sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
-
-        // observe sharedViewModel data
-        sharedViewModel.data.observe(this, Observer { item ->
-            binding.tvDetailTitle.text = item.name
-            binding.tvDetailDesc.text = item.description
-        })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

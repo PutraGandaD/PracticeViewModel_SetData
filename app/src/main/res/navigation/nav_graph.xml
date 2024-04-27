@@ -7,16 +7,24 @@
 
     <fragment
         android:id="@+id/fragmentList"
-        android:name="com.putragandad.practiceviewmodel.fragments.FragmentList"
+        android:name="com.putragandad.practiceviewmodel.ui.fragments.FragmentList"
         android:label="fragment_list"
         tools:layout="@layout/fragment_list" >
         <action
             android:id="@+id/action_fragmentList_to_fragmentDetail"
             app:destination="@id/fragmentDetail" />
+        <action
+            android:id="@+id/action_fragmentList_to_fragmentAddNote"
+            app:destination="@id/fragmentAddNote" />
     </fragment>
     <fragment
         android:id="@+id/fragmentDetail"
-        android:name="com.putragandad.practiceviewmodel.fragments.FragmentDetail"
+        android:name="com.putragandad.practiceviewmodel.ui.fragments.FragmentDetail"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" />
+    <fragment
+        android:id="@+id/fragmentAddNote"
+        android:name="com.putragandad.practiceviewmodel.ui.fragments.FragmentAddNote"
+        android:label="fragment_add_note"
+        tools:layout="@layout/fragment_add_note" />
 </navigation>

@@ -1,10 +1,11 @@
-package com.putragandad.practiceviewmodel.fragments
+package com.putragandad.practiceviewmodel.ui.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,10 +13,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.putragandad.practiceviewmodel.R
 import com.putragandad.practiceviewmodel.adapters.CardOnClickListener
 import com.putragandad.practiceviewmodel.adapters.ItemListAdapter
-import com.putragandad.practiceviewmodel.data.Constant
 import com.putragandad.practiceviewmodel.models.Item
-import com.putragandad.practiceviewmodel.repositories.ItemRepository
-import com.putragandad.practiceviewmodel.viewmodels.SharedViewModel
+import com.putragandad.practiceviewmodel.ui.SharedViewModel
 
 class FragmentList : Fragment(), CardOnClickListener {
     private lateinit var sharedViewModel: SharedViewModel
@@ -39,14 +38,16 @@ class FragmentList : Fragment(), CardOnClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val rvAdapter = ItemListAdapter(ItemRepository.getItemData(), this)
-        val recyclerView: RecyclerView = view.findViewById(R.id.rv_fragmentlist)
-        recyclerView.adapter = rvAdapter
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        sharedViewModel.data.observe(viewLifecycleOwner, Observer { item ->
+            val rvAdapter = ItemListAdapter(item, this)
+            val recyclerView: RecyclerView = view.findViewById(R.id.rv_fragmentlist)
+            recyclerView.adapter = rvAdapter
+            recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        })
     }
 
     override fun onItemClicked(item: Item) {
-        sharedViewModel.setData(item)
+//        sharedViewModel.setData(item)
         findNavController().navigate(R.id.action_fragmentList_to_fragmentDetail)
     }
 }

@@ -1,8 +1,8 @@
-package com.putragandad.practiceviewmodel.data
+package com.putragandad.practiceviewmodel.utils
 
 import com.putragandad.practiceviewmodel.models.Item
 
-object Constant {
+class Constant {
     fun itemConstantData() : ArrayList<Item> {
         val item = ArrayList<Item>()
 
@@ -15,5 +15,9 @@ object Constant {
         item.add(item3)
 
         return item
+    }
+
+    companion object {
+        val NOTES_DATA = "NOTES_DATA"
     }
 }
