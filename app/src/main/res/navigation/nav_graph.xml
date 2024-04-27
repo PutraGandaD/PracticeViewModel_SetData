@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragmentList"
-        android:name="com.putragandad.practiceviewmodel.ui.fragments.FragmentList"
+        android:name="com.putragandad.practiceviewmodel.ui.fragments.FragmentNoteList"
         android:label="fragment_list"
         tools:layout="@layout/fragment_list" >
         <action

@@ -13,12 +13,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.putragandad.practiceviewmodel.R
 import com.putragandad.practiceviewmodel.adapters.CardOnClickListener
 import com.putragandad.practiceviewmodel.adapters.ItemListAdapter
-import com.putragandad.practiceviewmodel.databinding.FragmentDetailBinding
 import com.putragandad.practiceviewmodel.databinding.FragmentListBinding
-import com.putragandad.practiceviewmodel.models.Item
+import com.putragandad.practiceviewmodel.models.Note
 import com.putragandad.practiceviewmodel.ui.SharedViewModel
 
-class FragmentList : Fragment(), CardOnClickListener {
+class FragmentNoteList : Fragment(), CardOnClickListener {
     private lateinit var sharedViewModel: SharedViewModel
     private var _binding : FragmentListBinding? = null
     private val binding get() = _binding!!
@@ -55,7 +54,7 @@ class FragmentList : Fragment(), CardOnClickListener {
         }
     }
 
-    override fun onItemClicked(item: Item) {
+    override fun onItemClicked(item: Note) {
 //        sharedViewModel.setData(item)
         findNavController().navigate(R.id.action_fragmentList_to_fragmentDetail)
     }

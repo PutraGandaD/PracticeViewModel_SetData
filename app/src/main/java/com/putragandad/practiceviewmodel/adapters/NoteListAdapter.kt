@@ -7,9 +7,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import com.putragandad.practiceviewmodel.R
-import com.putragandad.practiceviewmodel.models.Item
+import com.putragandad.practiceviewmodel.models.Note
 
-class ItemListAdapter(private val dataSet: ArrayList<Item>, private val onItemClickListener: CardOnClickListener): RecyclerView.Adapter<ItemListAdapter.ViewHolder>() {
+class ItemListAdapter(private val dataSet: ArrayList<Note>, private val onItemClickListener: CardOnClickListener): RecyclerView.Adapter<ItemListAdapter.ViewHolder>() {
    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
        val cardTitle = view.findViewById<TextView>(R.id.tv_list_card_title)
        val cardDescription = view.findViewById<TextView>(R.id.tv_list_card_desc)
@@ -39,5 +39,5 @@ class ItemListAdapter(private val dataSet: ArrayList<Item>, private val onItemCl
 }
 
 interface CardOnClickListener {
-    fun onItemClicked(item: Item)
+    fun onItemClicked(item: Note)
 }
