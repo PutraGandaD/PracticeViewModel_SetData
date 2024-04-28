@@ -15,6 +15,7 @@ import com.putragandad.practiceviewmodel.databinding.FragmentAddEditNoteBinding
 import com.putragandad.practiceviewmodel.databinding.FragmentDetailBinding
 import com.putragandad.practiceviewmodel.models.Note
 import com.putragandad.practiceviewmodel.ui.SharedViewModel
+import com.putragandad.practiceviewmodel.utils.Constant
 
 class FragmentAddEditNote : Fragment() {
     private lateinit var sharedViewModel: SharedViewModel

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -17,6 +18,7 @@ import com.putragandad.practiceviewmodel.adapters.ItemListAdapter
 import com.putragandad.practiceviewmodel.databinding.FragmentListBinding
 import com.putragandad.practiceviewmodel.models.Note
 import com.putragandad.practiceviewmodel.ui.SharedViewModel
+import com.putragandad.practiceviewmodel.utils.Constant
 
 class FragmentNoteList : Fragment(), CardOnClickListener {
     private lateinit var sharedViewModel: SharedViewModel
@@ -57,6 +59,11 @@ class FragmentNoteList : Fragment(), CardOnClickListener {
     }
 
     override fun onItemClicked(item: Note) {
-        findNavController().navigate(R.id.action_fragmentList_to_fragmentDetail)
+        // Pass notes data as bundle
+        val bundle = Bundle().apply {
+            putParcelable(Constant.NOTES_DATA, item)
+        }
+
+        findNavController().navigate(R.id.action_fragmentList_to_fragmentDetail, bundle)
     }
 }
