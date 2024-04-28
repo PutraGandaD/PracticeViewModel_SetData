@@ -14,8 +14,8 @@
             android:id="@+id/action_fragmentList_to_fragmentDetail"
             app:destination="@id/fragmentDetail" />
         <action
-            android:id="@+id/action_fragmentList_to_fragmentAddNote"
-            app:destination="@id/fragmentAddNote" />
+            android:id="@+id/action_fragmentList_to_fragmentAddEditNote"
+            app:destination="@id/fragmentAddEditNote" />
     </fragment>
     <fragment
         android:id="@+id/fragmentDetail"
@@ -23,8 +23,8 @@
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" />
     <fragment
-        android:id="@+id/fragmentAddNote"
-        android:name="com.putragandad.practiceviewmodel.ui.fragments.FragmentAddNote"
+        android:id="@+id/fragmentAddEditNote"
+        android:name="com.putragandad.practiceviewmodel.ui.fragments.FragmentAddEditNote"
         android:label="fragment_add_note"
-        tools:layout="@layout/fragment_add_note" />
+        tools:layout="@layout/fragment_add_edit_note" />
 </navigation>

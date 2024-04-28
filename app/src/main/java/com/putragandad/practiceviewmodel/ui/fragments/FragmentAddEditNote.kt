@@ -6,29 +6,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.putragandad.practiceviewmodel.R
-import com.putragandad.practiceviewmodel.adapters.CardOnClickListener
-import com.putragandad.practiceviewmodel.adapters.ItemListAdapter
-import com.putragandad.practiceviewmodel.databinding.FragmentListBinding
+import com.putragandad.practiceviewmodel.databinding.FragmentAddEditNoteBinding
+import com.putragandad.practiceviewmodel.databinding.FragmentDetailBinding
 import com.putragandad.practiceviewmodel.models.Note
 import com.putragandad.practiceviewmodel.ui.SharedViewModel
 
-class FragmentNoteList : Fragment(), CardOnClickListener {
+class FragmentAddEditNote : Fragment() {
     private lateinit var sharedViewModel: SharedViewModel
-    private var _binding : FragmentListBinding? = null
+
+    private var _binding : FragmentAddEditNoteBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentListBinding.inflate(inflater, container, false)
-        // Inflate the layout for this fragment
+        _binding = FragmentAddEditNoteBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -37,26 +35,18 @@ class FragmentNoteList : Fragment(), CardOnClickListener {
 
         // get viewmodels instance
         sharedViewModel = ViewModelProvider(requireActivity()).get(SharedViewModel::class.java)
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val recyclerView: RecyclerView = binding.rvFragmentlist
+        binding.fabSaveNotes.setOnClickListener {
+            // get text from the editText
+            val noteTitle = binding.tfNotesTitle.editText?.text.toString()
+            val noteContent = binding.tfNotesContent.editText?.text.toString()
 
-        sharedViewModel.data.observe(viewLifecycleOwner, Observer { item ->
-            val rvAdapter = ItemListAdapter(item, this)
-            recyclerView.adapter = rvAdapter
-            recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        })
-
-        binding.fabAddNotes.setOnClickListener {
-            findNavController().navigate(R.id.action_fragmentList_to_fragmentAddEditNote)
+            sharedViewModel.addData(Note(noteTitle, noteContent))
+            findNavController().popBackStack()
         }
-    }
-
-    override fun onItemClicked(item: Note) {
-        findNavController().navigate(R.id.action_fragmentList_to_fragmentDetail)
     }
 }

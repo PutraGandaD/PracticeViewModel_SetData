@@ -27,8 +27,8 @@ class ItemListAdapter(private val dataSet: ArrayList<Note>, private val onItemCl
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = dataSet.get(position) // get data from the current position
-        holder.cardTitle.text = data.name
-        holder.cardDescription.text = data.description
+        holder.cardTitle.text = data.title
+        holder.cardDescription.text = data.content
 
         val itemCard = holder.itemView.findViewById<MaterialCardView>(R.id.card_list)
         itemCard.setOnClickListener {
